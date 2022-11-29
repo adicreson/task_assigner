@@ -5,7 +5,7 @@ class taskAssigner:
 
     def __init__(self, persons, tasks):
         self.persons = persons
-        self.tasks  = tasks
+        self.tasks  = tasks #Tasks are tuples containing a task and a corresponding category.
 
     #Returns a random person
     def __random_person(self):
@@ -14,12 +14,13 @@ class taskAssigner:
 
         return rand_person
 
-    #Returns a random task. Tasks are tuples containing a task and a corresponding category.
+    #Returns a random task
     def __random_task(self):
         rand_idx = randint(0, len(self.tasks) - 1)
         rand_task = self.tasks.pop(rand_idx)
 
         return rand_task
+
     #Assigns tasks to persons
     def __assign_tasks(self):
         while self.persons:
@@ -36,6 +37,15 @@ class taskAssigner:
         print("==========================================================")
         for person, task_tuple in self.assignments.items():
             print("{} \t\t\t {} \t\t {}".format(person, task_tuple[0], task_tuple[1]))
+        
+        print("\n\n***Remaining tasks to be done when finished with initial task***")
+        print("Task \t\t Category")
+        print("================================================================")
+
+        while tasks:
+            task, category = self.__random_task()
+            print("{} \t\t {}".format( task, category))
+
 
 
 persons = ["Person1", "Person2", "Person3", "Person4", "Person5"]
